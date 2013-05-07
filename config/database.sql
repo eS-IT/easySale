@@ -85,6 +85,7 @@ CREATE TABLE `tl_easysale_transactions` (
   `txn_type` varchar(255) NOT NULL default '',
   `mc_currency` varchar(255) NOT NULL default '',
   `residence_country` varchar(255) NOT NULL default '',
+  `pending_reason` varchar(255) NOT NULL default '',
   `test_ipn` varchar(255) NOT NULL default '',
   `handling_amount` varchar(255) NOT NULL default '',
   `transaction_subject` varchar(255) NOT NULL default '',
