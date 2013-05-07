@@ -1,0 +1,48 @@
+.esproduct_details .headline{
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.esproduct{
+    margin-bottom: 2px;
+}
+
+.esproduct .lable{
+    display: inline-block;
+    width: 10em;
+}
+
+.ce_tl_easysale_salesite .agb,
+.ce_tl_easysale_salesite .widerruf,
+.ce_tl_easysale_salesite .ablauf,
+.ce_tl_easysale_salesite .anbieter,
+.ce_tl_easysale_salesite .agbzusatz{
+    background-color: #f9f9f9;
+    border: 1px solid #333;
+    max-height: 400px;
+    margin-bottom: 10px;
+    overflow: auto;
+    padding: 5px;
+    width: 500px;
+}
+
+#easysale .terms{
+    background-color: #f9f9f9;
+    border: 1px solid #333;
+    padding: 10px;
+    width: 490px;
+}
+
+#easysale label.error{
+    color: red;
+}
+
+#easysale button{
+    margin: 20px 0;
+}
+
+#easysale .buybutton{
+    border: none;
+    background: none;
+}

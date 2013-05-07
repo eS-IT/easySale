@@ -1,0 +1,16 @@
+<h2><#headline#></h2>
+<form name="paypalform" id="paypalform" action="<#formAction#>" method="post">
+    <#formFields#>
+    <input type="submit" id="submit_button" style="display:none" />
+    <label class="look_like_an_a_tag" for="submit_button" style="cursor: pointer; text-decoration: underline"><#formSubmitValue#></label>
+</form>
+
+<!-- Formular absenden -->
+<script type="text/javascript">
+    window.onload = function(){
+        var redirect=<#redirect#>;
+        if(redirect){
+            document.getElementById("paypalform").submit();
+        }
+    }
+</script>

@@ -1,0 +1,54 @@
+<div class="<?php echo $this->class; ?> block"<?php echo $this->cssID; ?><?php if ($this->style): ?> style="<?php echo $this->style; ?>"<?php endif; ?>>
+
+    <?php if ($this->headline): ?>
+        <<?php echo $this->hl; ?>><?php echo $this->headline; ?></<?php echo $this->hl; ?>>
+    <?php endif; ?>
+
+    <?php echo $this->content; ?>
+
+    <?php if($this->formAction): ?>
+        <form action="<?php echo $this->formAction; ?>" method="post" id="easysale" name="easysale">
+            <div class="terms">
+                <!-- Nicht alle Checkboxen angeklick -->
+                <?php echo $this->checkboxError; ?>
+
+                <input type="hidden" name="FORM_SUBMIT" value="acceptTerm">
+                <input type="hidden" name="REQUEST_TOKEN" value="{{request_token}}">
+
+                <!-- AGB -->
+                <div class="checkboxContainer">
+                    <input type="checkbox" name="acceptAgb" id="acceptAgb">
+                    <label for="acceptAgb" class="form label <?php echo $this->formError; ?>"><?php echo $this->textagbbox; ?></label>
+                </div>
+
+                <!-- Widrerruf -->
+                <div class="checkboxContainer">
+                    <input type="checkbox" name="acceptWider" id="acceptWider">
+                    <label for="acceptWider" class="form label <?php echo $this->formError; ?>"><?php echo $this->textwiderbox; ?></label>
+                </div>
+            </div>
+            <input type="submit" name="mysubmit" value="<?php echo $this->buttonText; ?>" />
+        </form>
+    <?php endif; ?>
+
+    <?php if($this->showtextagb && $this->textagb): ?>
+        <div class="easysale agb" id="easysale-agb"><?php echo $this->textagb; ?></div>
+    <?php endif; ?>
+
+    <?php if($this->showtextwiderruf && $this->textwiderruf): ?>
+        <div class="easysale widerruf" id="easysale-widerruf"><?php echo $this->textwiderruf; ?></div>
+    <?php endif; ?>
+
+    <?php if($this->showtextablauf && $this->textablauf): ?>
+        <div class="easysale ablauf" id="easysale-ablauf"><?php echo $this->textablauf; ?></div>
+    <?php endif; ?>
+
+    <?php if($this->showtextanbieter && $this->textanbieter): ?>
+        <div class="easysale anbieter" id="easysale-anbieter"><?php echo $this->textanbieter; ?></div>
+    <?php endif; ?>
+
+    <?php if($this->showtextagbzusatz && $this->textagbzusatz): ?>
+        <div class="easysale agbzusatz" id="easysale-agbzusatz"><?php echo $this->textagbzusatz; ?></div>
+    <?php endif; ?>
+
+</div>
