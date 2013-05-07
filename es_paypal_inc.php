@@ -160,23 +160,30 @@ class es_paypal_inc extends \System{
 
             @fclose($fp);
 
-            if(preg_match('/VERIFIED/i',$str)){
+            if (preg_match('/VERIFIED/i',$str))
+            {
                 $this->es_easysale->writeLog('Zahlung von PayPal verifiziert!', $this->posted_data);
 
-                if(!preg_match('/subscr/',$this->posted_data['txn_type'])){
+                if (!preg_match('/subscr/', $this->posted_data['txn_type']))
+                {
+                	if ($this->testTransaction($this->posted_data))
+				    {
+						$this->es_easysale->writeLog('Speichere Zahlung');
+						$arrNewDbData = $this->es_easysale->saveTransaction($this->posted_data);
+						$this->es_easysale->writeLog('Zahlung gespeichert!', $arrNewDbData);
 
-                    if($this->posted_data['payment_status']=='Completed'){
-                        $this->es_easysale->writeLog('Zahlung bei PayPal komplett!', $this->posted_data);
-                        $this->type='payment';
+                        if ($this->posted_data['payment_status'] == 'Completed')
+                        {
+							$this->es_easysale->writeLog('Zahlung bei PayPal komplett!', $this->posted_data);
+							$this->type='payment';
 
-                        if($this->testTransaction($this->posted_data)){
-                            $this->es_easysale->writeLog('Speichere Zahlung');
-                            $arrNewDbData = $this->es_easysale->saveTransaction($this->posted_data);
-                            $this->es_easysale->writeLog('Zahlung gespeichert!', $arrNewDbData);
                             return $arrNewDbData; // Ganze Tabellenzeile zurueckgeben, statt nur der POST-Datan!
-                        } else {
+                        }
+                        else
+                        {
                             $this->error='POST-Data-Error. Daten passen nicht zur Transaktion!';
                             $this->es_easysale->writeLog($this->error, $this->posted_data);
+
                             return $this->formatError();
                         }
                     }
@@ -246,7 +253,8 @@ class es_paypal_inc extends \System{
         $this->es_easysale->writeLog('Pruefe Daten [Local]', $arrDbData);
 
         foreach ($arrTests as $strField) {
-            if($arrData[$strField] != $arrDbData[$strField]){
+            if (html_entity_decode($arrData[$strField]) != html_entity_decode($arrDbData[$strField]))
+            {
                 $this->es_easysale->writeLog('Fehlerhafte Daten gefunden', array('field' => $strField, 'local' => $arrDbData[$strField], 'paypal' => $arrData[$strField]));
                 return false;
             }
