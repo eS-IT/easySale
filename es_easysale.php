@@ -125,14 +125,12 @@ class es_easysale extends \Controller{
             $strQuery = 'INSERT INTO ' . $strTable . ' SET %s';
         }
 
-		$arrFieldNames = $this->Database->getFieldNames($strTable);
+        $arrFieldNames = $this->Database->getFieldNames($strTable);
 
         $strTmp = '';
-        foreach ($arrData as $k => $v)
-        {
-        	if (in_array($k, $arrFieldNames))
-        	{
-            	$strTmp .= '`' . $k . '` = "' . $v . '", ';
+        foreach($arrData as $k => $v){
+            if(in_array($k, $arrFieldNames)){
+                $strTmp .= '`' . $k . '` = "' . $v . '", ';
             }
         }
 
